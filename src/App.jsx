@@ -8,9 +8,9 @@ import InputForm from './components/InputTask/Input'
 function App() {
 
   return (
-    // <Form />
-    // ,
-    <ButtonTable/>
+    <Form />
+    // // // ,
+    // <ButtonTable/>
     // ,
     // <InputForm/>
   )

@@ -21,15 +21,8 @@ const Form = () => {
       <h1>Registration Form</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="title">Title:</label>
-          <select id="title" value={title} onChange={(e) => setTitle(e.target.value)}>
-            <option value="Mr.">Mr.</option>
-            <option value="Mrs.">Mrs.</option>
-          </select>
-        </div>
-        <div>
           <label htmlFor="firstName">FirstName:</label>
-          <input type="text" id="name" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
+          <input type="text"  value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
         </div>
         <div>
           <label htmlFor="lastName">LastName:</label>
@@ -41,7 +34,7 @@ const Form = () => {
         </div>
         <div>
           <label htmlFor="pincode">Pincode:</label>
-          <input type="number" id="pincode" value={pincode} onChange={(e) => setpincode(e.target.value)} required />
+          <input type="number" className="pincode" value={pincode} onChange={(e) => setpincode(e.target.value)} required />
         </div>
         <div>
           <label htmlFor="mobileNumber">Mobile_Number:</label>
@@ -54,7 +47,7 @@ const Form = () => {
       
         </form>
         {showData && (
-          <div>
+          <div className="userData">
           <h2>User Data</h2>
           <p>First Name: {firstName}</p>
           <p>Last Name: {lastName}</p>
