@@ -1,62 +1,42 @@
-import { useState } from "react";
-import "./App.css";
-
+import React, { useState } from 'react';
+import './App.css';
 function App() {
-  const [valOne, setValOne] = useState("");
-  const [valSecond, setValSecond] = useState("");
-  const [result, setResult] = useState("");
-
-  const handleValOneChange = (event) => {
-    setValOne(event.target.value);
-  };
-
-  const handleValSecondChange = (event) => {
-    setValSecond(event.target.value);
-  };
+  const [inputValue, setInputValue] = useState('');
+  const [showTable, setShowTable] = useState(false);
  
-  const handleAddition = () => {
-    setResult(Number(valOne) + Number(valSecond));
+
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
   };
 
-  const handleSubtraction = () => {
-    setResult(Number(valOne) - Number(valSecond));
-
+  const handleButtonClick = () => {
+    setShowTable(true);
   };
 
-  const handleMultiplication = () => {
-    setResult(Number(valOne) * Number(valSecond));
+  const generateTable = (num) => {
+    const rows = [];
+    for (let i = 1; i <= 10; i++) {
+      rows.push(
+        <div className="table-row" key={i}>
+          <div className="table-cell">{`${num * i}`}</div>
+        </div>
+      );
+    }
+    return <div className="table">{rows}</div>;
+  };
 
-  };
-  const handleReset = () => {
-    setResult("");
-    setValOne("")
-    setValSecond("")
-  };
-  const handleDivision = () => {
-    setResult(Number(valOne) / Number(valSecond));
-
-  };
   return (
-    <div className="App">
-      <h1>Calculator</h1>
-      <hr />
-      <div className="valueOne-input">
-        <label>Value One</label>
-        <input type="number" value={valOne} onChange={handleValOneChange} required/>
+
+    <div className="container">
+      <h1>Table Generator</h1>
+      <div className="input-container">
+        <label>Enter a number:</label>
+        <input type="number" value={inputValue} onChange={handleInputChange} />
+          <button onClick={handleButtonClick}>Generate Table</button>
       </div>
-      <div className="valueSecond-input">
-      <label>Value Second</label>
-        <input type="number" value={valSecond} onChange={handleValSecondChange} required />
-      </div>
-     
-        <button onClick={handleAddition} className="button" type="submit">Addition</button>
-        <button onClick={handleSubtraction} className="button" type="submit">Subtraction</button>
-        <button onClick={handleMultiplication} className="button" type="submit">Multiplication</button>
-        <button onClick={handleDivision} className="button" type="submit">Division</button>
-        <button onClick={handleReset} className="button" type="submit">Reset</button>
-      <hr/>
-      <h2>Result: {result}</h2>
+      {showTable && inputValue ? generateTable(inputValue) : null}
     </div>
+
   );
 }
 
